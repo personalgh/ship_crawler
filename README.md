@@ -4,8 +4,7 @@ download sorted pictures form www.shipspotting.com
 
 you may need to alter:
 
-·the category number(cate_num)
-
+·the category number(cate_num)\n
 ·the pic number for different category(num_part54)
 
 ·the title of each category(title)
