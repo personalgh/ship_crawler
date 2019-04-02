@@ -4,7 +4,29 @@ import requests
 import re
 import numpy as np
 import time
-NUM_I_WANT=1
+import os
+
+def mkdir(path):
+    # 去除首位空格
+    path=path.strip()
+    # 去除尾部 \ 符号
+    path=path.rstrip("\\")
+    # 判断路径是否存在
+    isExists=os.path.exists(path)
+    # 判断结果
+    if not isExists:
+        # 如果不存在则创建目录,创建目录操作函数
+        '''
+        os.mkdir(path)与os.makedirs(path)的区别是,当父目录不存在的时候os.mkdir(path)不会创建，os.makedirs(path)则会创建父目录
+        '''
+        #此处路径最好使用utf-8解码，否则在磁盘中可能会出现乱码的情况
+        os.makedirs(path) 
+        print (path+' 创建成功')
+        return True
+    else:
+        # 如果目录存在则不创建，并提示目录已存在
+        print (path+' 目录已存在')
+        return False
 
 # base_url="http://www.shipspotting.com/"
 # ##从分类页面上获取所有种类的连接
@@ -55,10 +77,9 @@ cate_num=['276', '169', '37', '160', '65', '18', '168', '5', '137', '140', '141'
 
 
 ##修改URL中每页显示数量为总数量
-for i in range(1):
+for i in range(2,3):
     ##创建文件夹
-    
-    ##创建文件夹结束
+    mkdir(title[i])
     inner_url="http://www.shipspotting.com/gallery/search.php?limit=12&limitstart=0&search_title=&search_title_option=&search_imo=&search_pen_no=&search_mmsi=&search_eni=&search_callsign=&search_category_1=276&search_cat1childs=&search_uid=&search_country=&search_port=&search_subports=&search_flag=&search_homeport=&search_adminstatus=&search_classsociety=&search_builder=&search_buildyear1=&search_owner=&search_manager=&sortkey=p.lid&sortorder=desc&page_limit=12&viewtype=1"
     sub_part_cate="search_category_1="+cate_num[i]
     sub_part_pagenum="page_limit="+str(num_part54[i])
@@ -89,7 +110,7 @@ for i in range(1):
         ##进行爬取
         r = requests.get(mg, stream=True)
         image_name = mg.split('/')[-1]
-        with open('./img2/%s' % image_name, 'wb') as f:
+        with open('./%s/%s' % (title[i], image_name), 'wb') as f:
             for chunk in r.iter_content(chunk_size=128):
                 f.write(chunk)
         time_now=time.strftime('%H:%M:%S',time.localtime(time.time()))
