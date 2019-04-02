@@ -1,6 +1,7 @@
 # ship_crawler
 download sorted pictures form www.shipspotting.com 
 
+
 you may need to alter:
 
 ·the category number(cate_num)
@@ -9,7 +10,10 @@ you may need to alter:
 
 ·the title of each category(title)
 
+
 if they changed
+
 they can be rematched by the code with #
+
 
 you need to change range(), to which category in order is about to download
