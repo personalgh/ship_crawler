@@ -37,6 +37,7 @@ for i in cate_url:
     sub_soup = BeautifulSoup(sub_html,features='lxml')
     # print(sub_soup.find("b").get_text())
     picnum=sub_soup.find("b").get_text()
+    # num_of_pic+=re.findall(r"\d+\.?\d*",picnum)
     num_of_pic+=re.findall(r"\d+\.?\d*",picnum)
     print(num_of_pic[-1])
 np.savetxt("picnum.txt",print)
