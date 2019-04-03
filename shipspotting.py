@@ -77,14 +77,14 @@ cate_num=['276', '169', '37', '160', '65', '18', '168', '5', '137', '140', '141'
 
 
 ##修改URL中每页显示数量为总数量
-for i in range(2,3):
+for this_cate in range(6,7):
     ##创建文件夹
-    mkdir(title[i])
+    mkdir(title[this_cate])
     inner_url="http://www.shipspotting.com/gallery/search.php?limit=12&limitstart=0&search_title=&search_title_option=&search_imo=&search_pen_no=&search_mmsi=&search_eni=&search_callsign=&search_category_1=276&search_cat1childs=&search_uid=&search_country=&search_port=&search_subports=&search_flag=&search_homeport=&search_adminstatus=&search_classsociety=&search_builder=&search_buildyear1=&search_owner=&search_manager=&sortkey=p.lid&sortorder=desc&page_limit=12&viewtype=1"
-    sub_part_cate="search_category_1="+cate_num[i]
-    sub_part_pagenum="page_limit="+str(num_part54[i])
+    sub_part_cate="search_category_1="+cate_num[this_cate]
+    sub_part_pagenum="page_limit="+str(num_part54[this_cate])
     inner_url=re.sub('search_category_1=276',sub_part_cate,inner_url)
-    inner_url=re.sub('page_limit=12',sub_part_pagenum,inner_url)
+    # inner_url=re.sub('page_limit=12',sub_part_pagenum,inner_url)
     # print(inner_url)
     print("下面开始获取图片链接")
     ##获取图片连接
@@ -98,21 +98,21 @@ for i in range(2,3):
     img_url=[]
     num_mark=0
     print("开始循环爬取")
-    for i in range(len(img_find)):
+    for pictures in range(len(img_find)):
         num_mark+=1
-        if(num_mark<723):
+        if(num_mark<-1):
             continue
         ##修改图片尺寸small->middle
-        mg=re.sub('small','middle',img_find[i].get("src"))
+        mg=re.sub('small','middle',img_find[pictures].get("src"))
         img_url.append(mg)
         print(mg)
     
         ##进行爬取
         r = requests.get(mg, stream=True)
         image_name = mg.split('/')[-1]
-        print(title[i])
-        print(image_name)
-        with open('./%s/%s' % (title[i], image_name), 'wb') as f:
+        # print(title[this_cate])
+        # print(image_name)
+        with open('./%s/%s' % (title[this_cate], image_name), 'wb') as f:
             for chunk in r.iter_content(chunk_size=128):
                 f.write(chunk)
         time_now=time.strftime('%H:%M:%S',time.localtime(time.time()))
