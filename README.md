@@ -2,7 +2,7 @@
 <h1>download sorted pictures form www.shipspotting.com </h1><br>
 <h2><b>main file(the only one needed): shipspotting.py</b></h2><br>
 
-you may need to alter:<br>
+<h3>you may need to alter:</h3><br>
 ·the category number(cate_num)<br>
 ·the pic number for different category(num_part54)<br>
 ·the title of each category(title)<br>
