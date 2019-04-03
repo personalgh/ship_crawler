@@ -77,14 +77,14 @@ cate_num=['276', '169', '37', '160', '65', '18', '168', '5', '137', '140', '141'
 
 
 ##修改URL中每页显示数量为总数量
-for this_cate in range(6,7):
+for this_cate in range(len(cate_num)):
     ##创建文件夹
     mkdir(title[this_cate])
     inner_url="http://www.shipspotting.com/gallery/search.php?limit=12&limitstart=0&search_title=&search_title_option=&search_imo=&search_pen_no=&search_mmsi=&search_eni=&search_callsign=&search_category_1=276&search_cat1childs=&search_uid=&search_country=&search_port=&search_subports=&search_flag=&search_homeport=&search_adminstatus=&search_classsociety=&search_builder=&search_buildyear1=&search_owner=&search_manager=&sortkey=p.lid&sortorder=desc&page_limit=12&viewtype=1"
     sub_part_cate="search_category_1="+cate_num[this_cate]
     sub_part_pagenum="page_limit="+str(num_part[this_cate])
     inner_url=re.sub('search_category_1=276',sub_part_cate,inner_url)
-    # inner_url=re.sub('page_limit=12',sub_part_pagenum,inner_url)
+    inner_url=re.sub('page_limit=12',sub_part_pagenum,inner_url)
     # print(inner_url)
     print("下面开始获取图片链接")
     ##获取图片连接
