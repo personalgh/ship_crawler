@@ -1,6 +1,6 @@
 # ship_crawler
 download sorted pictures form www.shipspotting.com <br>
-<b>mainfile:shipspotting.py</b><br>
+<b>main file(the only one needed): shipspotting.py</b><br>
 
 you may need to alter:<br>
 ·the category number(cate_num)<br>
