@@ -49,7 +49,7 @@ for this_cate in range(len(cate_num)):
     sub_part_pagenum="page_limit="+str(num_part[this_cate])
     inner_url=re.sub('search_category_1=276',sub_part_cate,inner_url)
 
-    for pages in range(num_part[this_cate]//PAGE_MAX):
+    for pages in range((num_part[this_cate]//PAGE_MAX)+1):
         if(num_part[this_cate]>PAGE_MAX):
             large_cache=PAGE_MAX
             num_part[this_cate]-=PAGE_MAX
